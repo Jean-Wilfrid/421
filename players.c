@@ -3,12 +3,13 @@
  *@post : The field is initialised for all the players
  *@result : _
  */
-void initialiseNumbers(Player players[], int size)
+void initialisePlayers(Player players[], int size)
 {
     int i = 0;
     while(i < size)
     {
         players[i].number = i+1;
+        players[i].tokensOwned = 0;
         i++;
     }
 }
@@ -199,7 +200,7 @@ void firstTurnToPlay(Player players[], int* turns, int best [], int worst[])
     int i = 0,j = 0, dices[3], changes[]= {0,0,0};
     while (j < 3)
     {
-        inviteToPlay(players[0]);
+        inviteToPlay(players[0].number);
         rollDices(dices,3);
         bullSortDesc(dices,3);
         showDiceRoll(dices,3);
@@ -215,9 +216,9 @@ void firstTurnToPlay(Player players[], int* turns, int best [], int worst[])
         j++;
     }
     int associatedTokens = associateTokens(dices);
-    best[0] = 0;
+    best[0] = 1;
     best[1] = associatedTokens;
-    worst[0] = 0;
+    worst[0] = 1;
     worst[1] = associatedTokens;
     *turns =  i+1;
 }
@@ -234,19 +235,27 @@ void secondTurnToPlay(Player players[], int* turns, int n, int best [], int wors
     {
         while (j < *turns)
         {
-            inviteToPlay(players[i]);
+            inviteToPlay(players[i].number);
             rollDices(dices, 3);
             bullSortDesc(dices,3);
             showDiceRoll(dices, 3);
-            markChanges(changes);
-            if(checkChanges(changes))
+            if (*turns != 1)
             {
-                j++;
+                markChanges(changes);
+                if(checkChanges(changes))
+                {
+                    j++;
+                }
+                else
+                {
+                    break;
+                }
             }
             else
             {
-                break;
+                j++;
             }
+            
         }
         associatedTokens = associateTokens(dices);
         betterCombination(best, players[i],associatedTokens);
@@ -265,20 +274,28 @@ void anyTurnToPlay(Player players[], int* turns, int n, int best [], int worst[]
     int i = 0, j = 0, associatedTokens, dices[3], changes[]= {0,0,0};
     while (i < n)
     {
+        j = 0;
         while (j < *turns)
         {
-            inviteToPlay(players[i]);
+            inviteToPlay(players[i].number);
             rollDices(dices, 3);
             bullSortDesc(dices,3);
             showDiceRoll(dices, 3);
-            markChanges(changes);
-            if(checkChanges(changes))
+            if (*turns != 1)
             {
-                j++;
+                markChanges(changes);
+                if(checkChanges(changes))
+                {
+                    j++;
+                }
+                else
+                {
+                    break;
+                }
             }
             else
             {
-                break;
+                j++;
             }
         }
         associatedTokens = associateTokens(dices);
@@ -311,11 +328,13 @@ void transferTokensCharge(int best[], int worst[], Player players[], int* pot)
     nenetteConversion(worst);
     if (*pot > best[1])
     {
-        players[worst[0]].tokensOwned += best[1];
+        players[worst[0] - 1].tokensOwned += best[1];
+        *pot -= best[1];
     }
     else
     {
-        players[worst[0]].tokensOwned += *pot;
+        players[worst[0] - 1].tokensOwned += *pot;
+        *pot = 0;
     }
     
 }
@@ -328,15 +347,15 @@ void transferTokensCharge(int best[], int worst[], Player players[], int* pot)
 void transferTokensDischarge(int best[], int worst[], Player players[])
 {
     nenetteConversion(worst);
-    if (players[best[0]].tokensOwned > best[1])
+    if (players[best[0] - 1].tokensOwned > best[1])
     {
-        players[worst[0]].tokensOwned += best[1];
-        players[best[0]].tokensOwned -= best[1];
+        players[worst[0] - 1].tokensOwned += best[1];
+        players[best[0] - 1].tokensOwned -= best[1];
     }
     else
     {
-        players[worst[0]].tokensOwned += players[best[0]].tokensOwned;
-        players[best[0]].tokensOwned = 0;
+        players[worst[0] - 1].tokensOwned += players[best[0]].tokensOwned;
+        players[best[0] - 1].tokensOwned = 0;
     } 
 }
 
@@ -347,25 +366,27 @@ void transferTokensDischarge(int best[], int worst[], Player players[])
  */
 void selectFirstPlayer (int n)
 {
-    inviteToPlayB(1);
+    inviteToPlay(1);
     int i = 1, max[2], dice = rollDice(6,1);
-    max[0] = 0;
+    showDiceRollS(dice);
+    max[0] = 1;
     max[1] = dice;
     while(i < n)
     {
-        inviteToPlayB(i+1);
+        inviteToPlay(i+1);
         dice = rollDice(6,1);
+        showDiceRollS(dice);
         if (dice == 1)
         {
             max[1] = 1;
-            max[0] = i;
+            max[0] = i+1;
         }
         else
         {
-            if (dice > max[1])
+            if (dice > max[1] && max [1] != 1)
             {
                 max[1] = dice;
-                max[0] = i;
+                max[0] = i+1;
             }
         }
         i++;
@@ -386,12 +407,14 @@ void charging(Player players[], int* turns, int n, int best [], int worst[])
     transferTokensCharge(best,worst,players,&pot);
     announceTokensTransferCharge(best,worst,pot);
     showRemainingTokens(players,n);
+    resetReferences(best,worst);
     while (pot > 0)
     {
         anyTurnToPlay(players,turns,n,best,worst);
         transferTokensCharge(best,worst,players,&pot);
         announceTokensTransferCharge(best,worst,pot);
         showRemainingTokens(players,n);
+        resetReferences(best,worst);
     }
 }
 
@@ -424,7 +447,7 @@ void resetReferences(int best[], int worst[])
     for (int i = 0; i < 2; i++)
     {
         best[i] = 0;
-        worst[i] = 0;
+        worst[i] = 1;
     }
 }
 

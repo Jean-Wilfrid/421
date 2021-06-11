@@ -5,8 +5,8 @@ struct Player
     int tokensOwned;
 };
 
-void initialiseNumbers(Player players[], int size);
-/*Fills the field number of the players. Size indicates how many players are there.*/
+void initialisePlayers(Player players[], int size);
+/*Fills the fields of the players. Size indicates how many players are there.*/
 
 void markChanges(int changes[]);
 /*Takes note of the dices a player want to change or not*/
@@ -56,4 +56,5 @@ void resetReferences(int best[], int worst[]);
 void discharging(Player players[], int* turns, int n, int best [], int worst[]);
 /*Runs the discharging part of the game*/
 
+#include "display.h"
 #include "players.c"

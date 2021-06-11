@@ -1,22 +1,9 @@
 /*Invite a player to roll the dices
- *@pre : player is Player type
- *@post : A text is displayed inviting the player to roll the dices
- *@result_ 
- */
-void inviteToPlay(Player player)
-{
-    char r[2];
-    printf("Player %d, it's your turn. Press enter twice to roll the dices.\n", player.number);
-    read(r,2);
-    read(r,2);
-}
-
-/*Invite a player to roll the dices
  *@pre : n is int type
  *@post : A text is displayed inviting the player to roll the dices
  *@result_ 
  */
-void inviteToPlayB(int n)
+void inviteToPlay(int n)
 {
     char r[2];
     printf("Player %d, it's your turn. Press enter twice to roll the dices.\n",n);
@@ -37,7 +24,18 @@ void showDiceRoll(int dices[], int size)
     {
         printf("%d ", dices[i]);
         i++;
-    }   
+    }
+    printf("\n");   
+}
+
+/*Shows single dice roll
+ *@pre : dice is int type
+ *@post : The dice roll is shown
+ *@result :_
+ */
+void showDiceRollS(int dice)
+{
+    printf("Here's your draw : %d.\n", dice);
 }
 
 /*Asks a player, if he/she wants to keep or not a dice
@@ -60,10 +58,12 @@ void welcome (int* n)
 {
     printf ("Welcome to 421 !!!\nHow many are you ? ");
     scanf("%d",n);
+    cleanBuffer();
     while (*n < 2 || *n > 4)
     {
         printf("You should be at least 2 and at most 4 players.\nPlease enter your number again.\n");
         scanf("%d",n);
+        cleanBuffer();
     }
 }
 
@@ -74,7 +74,7 @@ void welcome (int* n)
  */
 void announceFirstPlayer (int max[])
 {
-    printf("The best score is %d, made by player %d.\nDuring the game, player %d will be the player 1.\n", max[0], max[1], max[1]);
+    printf("The best score is %d, made by player %d.\nDuring the game, player %d will be the player 1.\n", max[1], max[0], max[0]);
 }
 
 /*Announces the charging

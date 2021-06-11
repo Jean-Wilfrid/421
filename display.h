@@ -1,7 +1,4 @@
-void inviteToPlay(Player player);
-/*Invite player to roll the dices */
-
-void inviteToPlayB(int n);
+void inviteToPlay(int n);
 /*Invite a player to roll the dices*/
 
 void showDiceRoll(int dices[], int size);

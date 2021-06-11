@@ -6,9 +6,9 @@
 void bullSortAsc (int tab [], int size)
 {
     int i = 0;
-    while (i < 0)
+    while (i < size-1)
     {
-        if (tab[i] < tab [i+1])
+        if (tab[i] > tab [i+1])
         {
             tab[i] = tab[i] + tab[i+1];
             tab[i+1] = tab[i] - tab[i+1];
@@ -28,9 +28,9 @@ void bullSortAsc (int tab [], int size)
 void bullSortDesc (int tab [], int size)
 {
     int i = 0;
-    while (i < 0)
+    while (i < size -1)
     {
-        if (tab[i] > tab [i+1])
+        if (tab[i] < tab [i+1])
         {
             tab[i] = tab[i] + tab[i+1];
             tab[i+1] = tab[i] - tab[i+1];
