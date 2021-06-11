@@ -67,9 +67,9 @@ void welcome (int* n)
     }
 }
 
-/*Announce the first player
- *@pre : player is Player type
- *@post : A text is displayed inviting the player to roll the dices
+/*Announces the first player
+ *@pre : max != NULL
+ *@post : A text is displayed announcing the first player
  *@result_ 
  */
 void announceFirstPlayer (int max[])
@@ -77,9 +77,9 @@ void announceFirstPlayer (int max[])
     printf("The best score is %d, made by player %d.\nDuring the game, player %d will be the player 1.\n", max[0], max[1], max[1]);
 }
 
-/*Invite a player to roll the dices
- *@pre : player is Player type
- *@post : A text is displayed inviting the player to roll the dices
+/*Announces the charging
+ *@pre :_
+ *@post : A text is displayed announcing the charging
  *@result_ 
  */
 void announceCharge()
@@ -87,9 +87,9 @@ void announceCharge()
     printf("\n\n\nLet's Charge !!!!!\n\n\n");
 }
 
-/*Invite a player to roll the dices
- *@pre : player is Player type
- *@post : A text is displayed inviting the player to roll the dices
+/*Announces the discharging
+ *@pre :_
+ *@post : A text is displayed announcing the discharging
  *@result_ 
  */
 void announceDischarge()
@@ -97,9 +97,9 @@ void announceDischarge()
     printf("\n\n\nCharging is over...\n\nWho will be the first with no more tokens ???\n\n\n");
 }
 
-/*Invite a player to roll the dices
- *@pre : player is Player type
- *@post : A text is displayed inviting the player to roll the dices
+/*Shows the remaining tokens of each player
+ *@pre : players != NULL && n is int type
+ *@post : A text is displayed showing the tokens
  *@result_ 
  */
 void showRemainingTokens (Player players[], int n)
@@ -112,9 +112,9 @@ void showRemainingTokens (Player players[], int n)
     }
 }
 
-/*Invite a player to roll the dices
- *@pre : player is Player type
- *@post : A text is displayed inviting the player to roll the dices
+/*Announces the winner
+ *@pre : best != NULL
+ *@post : A text is displayed announcing the winner
  *@result_ 
  */
 void announceWinner (int best[])

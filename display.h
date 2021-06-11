@@ -14,13 +14,18 @@ void welcome (int* n);
 /*Welcomes the player and ask how many they are*/
 
 void announceFirstPlayer (int max[]);
+/*Announces the first player*/
 
 void announceCharge();
+/*Announces the charging*/
 
 void announceDischarge();
+/*Announces the discharging*/
 
 void showRemainingTokens (Player players[], int n);
+/*Shows the remaining tokens of each player*/
 
 void announceWinner (int best[]);
+/*Announces the winner*/
 
 #include "display.c"

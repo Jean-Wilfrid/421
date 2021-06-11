@@ -18,7 +18,7 @@ void rollDices (int tab [], int limit)
     int i = 0;
     while (i < limit)
     {
-        tab[i] = throwDice(6,1);
+        tab[i] = rollDice(6,1);
         i++;
     }
 }
