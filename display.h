@@ -28,4 +28,10 @@ void showRemainingTokens (Player players[], int n);
 void announceWinner (int best[]);
 /*Announces the winner*/
 
+void announceTokensTransferCharge(int best [], int worst[], int pot);
+/*Announce tokens transfer during charging*/
+
+void announceTokensTransferDischarge(int best [], int worst[]);
+/*Announce tokens transfer during discharging*/
+
 #include "display.c"

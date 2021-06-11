@@ -384,11 +384,13 @@ void charging(Player players[], int* turns, int n, int best [], int worst[])
     firstTurnToPlay(players,turns,best,worst);
     secondTurnToPlay(players,turns,n,best,worst);
     transferTokensCharge(best,worst,players,&pot);
+    announceTokensTransferCharge(best,worst,pot);
     showRemainingTokens(players,n);
     while (pot > 0)
     {
         anyTurnToPlay(players,turns,n,best,worst);
         transferTokensCharge(best,worst,players,&pot);
+        announceTokensTransferCharge(best,worst,pot);
         showRemainingTokens(players,n);
     }
 }
@@ -438,6 +440,7 @@ void discharging(Player players[], int* turns, int n, int best [], int worst[])
     {
         anyTurnToPlay(players,turns,n,best,worst);
         transferTokensDischarge(best,worst,players);
+        announceTokensTransferDischarge(best,worst);
         showRemainingTokens(players,n);
     }
 }

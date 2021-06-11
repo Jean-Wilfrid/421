@@ -107,7 +107,7 @@ void showRemainingTokens (Player players[], int n)
     int i = 0;
     while (i < n)
     {
-        printf("Player %d, you now have %d tokens.",players[i].number, players[i].tokensOwned);
+        printf("Player %d, you now have %d tokens.\n",players[i].number, players[i].tokensOwned);
         i++;
     }
 }
@@ -119,5 +119,25 @@ void showRemainingTokens (Player players[], int n)
  */
 void announceWinner (int best[])
 {
- printf ("We have a Wiiiiiiiiiinnnnnnnnnnnnnnnnnneeeeeeeeeeeeeeeerrrrr !!!!!!!\n\nAnd the winner is \n\nPlayer %d", best[0]);
+ printf ("We have a Wiiiiiiiiiinnnnnnnnnnnnnnnnnneeeeeeeeeeeeeeeerrrrr !!!!!!!\n\nAnd the winner is \n\nPlayer %d\n", best[0]);
+}
+
+/*Announce tokens transfer during charging
+ *@pre : best != NULL, worst != NULL, pot is int type
+ *@post : A text is displayed
+ *@result :_
+ */
+void announceTokensTransferCharge(int best [], int worst[], int pot)
+{
+    printf("Player %d made the best combination and player %d, the worst.\nPlayer %d receives %d tokens from the pot.\nIt remains %d tokens in the pot.\n", best[0],worst[0],worst[0],best[1],pot);
+}
+
+/*Announce tokens transfer during discharging
+ *@pre : best != NULL, worst != NULL
+ *@post : A text is displayed
+ *@result :_
+ */
+void announceTokensTransferDischarge(int best [], int worst[])
+{
+    printf("Player %d made the best combination and player %d, the worst.\nPlayer %d receives %d tokens from player %d.\n", best[0],worst[0],worst[0],best[1],best[0]);
 }
