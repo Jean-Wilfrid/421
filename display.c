@@ -139,5 +139,13 @@ void announceTokensTransferCharge(int best [], int worst[], int pot)
  */
 void announceTokensTransferDischarge(int best [], int worst[])
 {
-    printf("Player %d made the best combination and player %d, the worst.\nPlayer %d receives %d tokens from player %d.\n", best[0],worst[0],worst[0],best[1],best[0]);
+    if (best[0] == worst[0])
+    {
+        printf("All players are tied. No one loose tokens.\n");
+    }
+    else
+    {
+        printf("Player %d made the best combination and player %d, the worst.\nPlayer %d receives %d tokens from player %d.\n", best[0],worst[0],worst[0],best[1],best[0]);
+    }
+    
 }

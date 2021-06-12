@@ -32,7 +32,7 @@ void secondTurnToPlay(Player players[], int* turns, int n, int best [], int wors
 void anyTurnToPlay(Player players[], int* turns, int n, int best [], int worst[]);
 /*Makes players play a row for the rest of the game*/
 
-void nenetteConversion (int worst[]);
+void nenetteConversion (int worst[], int best[]);
 /*Set to 2 the asssociated tokens if the combination is "Nénette"*/
 
 void transferTokensCharge(int best[], int worst[], Player players[], int* pot);

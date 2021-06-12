@@ -7,6 +7,15 @@
 int main ()
 {
     srand(time(NULL));
-    int re = rand();
+    int n, turns,best[2], worst [2];
+    welcome(&n);
+    Player players[n];
+    selectFirstPlayer(n);
+    initialisePlayers(players,n);
+    announceCharge();
+    charging (players,&turns,n,best,worst);
+    announceDischarge();
+    discharging(players,&turns,n,best,worst);
+    announceWinner(best); 
     return EXIT_SUCCESS;
 }

@@ -310,11 +310,11 @@ void anyTurnToPlay(Player players[], int* turns, int n, int best [], int worst[]
  *@post : The value is set
  *@result : _
  */
-void nenetteConversion (int worst[])
+void nenetteConversion (int worst[], int best[])
 {
     if (worst[1] == 0)
     {
-        worst[1] = 2;
+        best[1] = 2;
     }
 }
 
@@ -325,7 +325,7 @@ void nenetteConversion (int worst[])
  */
 void transferTokensCharge(int best[], int worst[], Player players[], int* pot)
 {
-    nenetteConversion(worst);
+    nenetteConversion(worst,best);
     if (*pot > best[1])
     {
         players[worst[0] - 1].tokensOwned += best[1];
@@ -346,7 +346,7 @@ void transferTokensCharge(int best[], int worst[], Player players[], int* pot)
  */
 void transferTokensDischarge(int best[], int worst[], Player players[])
 {
-    nenetteConversion(worst);
+    nenetteConversion(worst, best);
     if (players[best[0] - 1].tokensOwned > best[1])
     {
         players[worst[0] - 1].tokensOwned += best[1];
@@ -458,9 +458,9 @@ void resetReferences(int best[], int worst[])
  */
 void discharging(Player players[], int* turns, int n, int best [], int worst[])
 {
-    resetReferences(best,worst);
     while (noWinner(players,n))
     {
+        resetReferences(best,worst);
         anyTurnToPlay(players,turns,n,best,worst);
         transferTokensDischarge(best,worst,players);
         announceTokensTransferDischarge(best,worst);
