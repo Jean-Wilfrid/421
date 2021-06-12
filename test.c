@@ -9,7 +9,7 @@ int main ()
 {
     srand(time(NULL));
     int n, turns,best[2], worst [2];
-    n = 2;//
+    n = 3;//
     turns = 1;//
     //welcome(&n);
     Player players[n];
@@ -17,8 +17,9 @@ int main ()
     initialisePlayers(players,n);
     /*announceCharge();
     charging (players,&turns,n,best,worst);*/
-    players[0].tokensOwned = 14;
+    players[0].tokensOwned = 7;
     players[1].tokensOwned = 7;
+    players[2].tokensOwned = 7;
     announceDischarge();
     discharging(players,&turns,n,best,worst);
     announceWinner(best);   
