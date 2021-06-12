@@ -354,7 +354,7 @@ void transferTokensDischarge(int best[], int worst[], Player players[])
     }
     else
     {
-        players[worst[0] - 1].tokensOwned += players[best[0]].tokensOwned;
+        players[worst[0] - 1].tokensOwned += players[best[0]- 1].tokensOwned;
         players[best[0] - 1].tokensOwned = 0;
     } 
 }
