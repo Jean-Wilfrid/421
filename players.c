@@ -22,7 +22,7 @@ void initialisePlayers(Player players[], int size)
 void markChanges(int changes[])
 {
     int j=0;
-    char answer[2];
+    char answer[3];
     while (j<3)
     {
         askToChange(j+1, answer);

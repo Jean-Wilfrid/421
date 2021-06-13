@@ -5,10 +5,10 @@
  */
 void inviteToPlay(int n)
 {
-    char r[2];
+    char r[3];
     printf("Player %d, it's your turn. Press enter twice to roll the dices.\n",n);
-    read(r,2);
-    read(r,2);
+    read(r,3);
+    read(r,3);
 }
 
 /*Shows the dice roll
@@ -46,7 +46,7 @@ void showDiceRollS(int dice)
 void askToChange(int n, char* answer)
 {
     printf("Do you want to roll again dice %d ?\nType :\n y for yes\nn for no\n",n);
-    read(answer,2);
+    read(answer,3);
 }
 
 /*Welcomes the player and ask how many they are

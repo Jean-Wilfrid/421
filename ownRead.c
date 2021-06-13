@@ -45,7 +45,6 @@ int read (char* str, int length)
         cleanBuffer();
         return 0;
     }
-    cleanBuffer();
 }
 
 /*Get all the characters reamining in the buffer
