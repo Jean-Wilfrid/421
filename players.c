@@ -30,6 +30,10 @@ void markChanges(int changes[])
         {
             changes[j] = 1;
         }
+        else
+        {
+            changes[j] = 0;
+        }
         j++;
     }
 }

@@ -10,6 +10,11 @@ int main ()
     srand(time(NULL));
     int changes[3];
     markChanges(changes);
+    for (int i = 0; i < 3; i++)
+    {
+      printf("%d ", changes[i]);
+    }
+    printf("\n");
     
     return EXIT_SUCCESS;
 }
