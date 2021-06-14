@@ -201,11 +201,11 @@ int associateTokens (int dices[])
  */
 void firstTurnToPlay(Player players[], int* turns, int best [], int worst[])
 {
-    int i = 0,j = 0, dices[3], changes[]= {0,0,0};
+    int i = 0,j = 0, dices[3], changes[]= {1,1,1};
     while (j < 3)
     {
         inviteToPlay(players[0].number);
-        rollDices(dices,3);
+        rollDices(dices,changes,3);
         bullSortDesc(dices,3);
         showDiceRoll(dices,3);
         markChanges(changes);
@@ -234,17 +234,21 @@ void firstTurnToPlay(Player players[], int* turns, int best [], int worst[])
  */
 void secondTurnToPlay(Player players[], int* turns, int n, int best [], int worst[])
 {
-    int i = 1, j = 0, associatedTokens, dices[3], changes[]= {0,0,0};
+    int i = 1, j = 0, associatedTokens, dices[3], changes[]= {1,1,1};
     while (i < n)
     {
         while (j < *turns)
         {
             inviteToPlay(players[i].number);
-            rollDices(dices, 3);
+            rollDices(dices,changes, 3);
             bullSortDesc(dices,3);
             showDiceRoll(dices, 3);
             if (*turns != 1)
             {
+                if (j == *turns -1)
+                {
+                    break;
+                }
                 markChanges(changes);
                 if(checkChanges(changes))
                 {
@@ -275,18 +279,22 @@ void secondTurnToPlay(Player players[], int* turns, int n, int best [], int wors
  */
 void anyTurnToPlay(Player players[], int* turns, int n, int best [], int worst[])
 {
-    int i = 0, j = 0, associatedTokens, dices[3], changes[]= {0,0,0};
+    int i = 0, j = 0, associatedTokens, dices[3], changes[]= {1,1,1};
     while (i < n)
     {
         j = 0;
         while (j < *turns)
         {
             inviteToPlay(players[i].number);
-            rollDices(dices, 3);
+            rollDices(dices,changes,3);
             bullSortDesc(dices,3);
             showDiceRoll(dices, 3);
             if (*turns != 1)
             {
+                if (j == *turns -1)
+                {
+                    break;
+                }
                 markChanges(changes);
                 if(checkChanges(changes))
                 {

@@ -8,13 +8,13 @@
 int main ()
 {
     srand(time(NULL));
-    int changes[3];
-    markChanges(changes);
-    for (int i = 0; i < 3; i++)
-    {
-      printf("%d ", changes[i]);
-    }
-    printf("\n");
+    int n, turns,best[2], worst [2];
+    welcome(&n);
+    Player players[n];
+    selectFirstPlayer(n);
+    initialisePlayers(players,n);
+    announceCharge();
+    charging (players,&turns,n,best,worst);
     
     return EXIT_SUCCESS;
 }
