@@ -1,3 +1,8 @@
+/*By Jean-Wilfrid TOGNIBO
+ *On June 2021
+ *This program is an implementation of the french game 421. 
+ *The rules followed to write code this are available here : https://www.regles-de-jeux.com/regle-du-421/ 
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
