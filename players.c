@@ -237,6 +237,7 @@ void secondTurnToPlay(Player players[], int* turns, int n, int best [], int wors
     int i = 1, j = 0, associatedTokens, dices[3], changes[]= {1,1,1};
     while (i < n)
     {
+        j = 0;
         while (j < *turns)
         {
             inviteToPlay(players[i].number);
