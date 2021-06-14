@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "players.h"
 #include "ownRead.h"
-#include "display.h"
+#include "sort.h"
+#include "dice.h"
+#include "players.h"
 int main ()
 {
     srand(time(NULL));
@@ -11,10 +12,9 @@ int main ()
     welcome(&n);
     Player players[n];
     selectFirstPlayer(n);
+    initialisePlayers(players,n);
     announceCharge();
     charging (players,&turns,n,best,worst);
-    announceDischarge();
-    discharging(players,&turns,n,best,worst);
-    announceWinner(best);
+    
     return EXIT_SUCCESS;
 }
