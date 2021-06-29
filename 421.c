@@ -6,8 +6,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "ownRead.h"
+#include "sort.h"
+#include "dice.h"
 #include "players.h"
-#include "display.h"
 
 int main ()
 {
